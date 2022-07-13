@@ -6,6 +6,26 @@
   </div>
 </template>
 
+<script>
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
+
+export default {
+  name: '',
+  components: { Header, Footer },
+  data() {
+    return {
+      sampleData: '',
+    };
+  },
+  setup() {},
+  created() {},
+  mounted() {},
+  unmounted() {},
+  methods: {},
+};
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
