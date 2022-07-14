@@ -51,6 +51,13 @@ export default {
   },
   mounted() {},
   unmounted() {},
+  updated() {
+    if (this.$route.path == '/BoxOffice') {
+      this.selectedDate = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().slice(0, 10);
+    } else if (this.$route.path == '/weekBoxOffice') {
+      this.selectedDate = new Date(new Date().setDate(new Date().getDate() - 8)).toISOString().slice(0, 10);
+    }
+  },
   methods: {
     search() {
       const targetDt = this.selectedDate.replaceAll('-', '');
