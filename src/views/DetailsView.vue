@@ -1,11 +1,17 @@
 <template>
   <div>
-    <h1>BoxOfficeByDay</h1>
+    {{ name }}
   </div>
 </template>
 <script>
 export default {
-  name: '',
+  name: 'DetailsView',
+  props: {
+    name: {
+      type: String,
+      default: '1',
+    },
+  },
   components: {},
   data() {
     return {
@@ -13,7 +19,10 @@ export default {
     };
   },
   setup() {},
-  created() {},
+  created() {
+    const val = this.$route.params;
+    console.log(val);
+  },
   mounted() {},
   unmounted() {},
   methods: {},

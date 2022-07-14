@@ -39,12 +39,35 @@ nav {
   padding: 30px;
 }
 
-nav a {
+nav,
+a {
   font-weight: bold;
   color: #2c3e50;
 }
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+table {
+  border: 1px solid rgb(70, 70, 70);
+  border-collapse: collapse;
+}
+td,
+th {
+  border: 1px solid rgb(70, 70, 70);
+  padding: 16px;
+}
+.container-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.dNone {
+  display: none;
+}
+.dBlock {
+  display: block;
 }
 </style>
