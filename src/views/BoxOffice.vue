@@ -1,7 +1,6 @@
 <template>
   <div class="container-column-center">
-    <h1 v-bind:class="{ dNone: this.$route.path == '/weekBoxOffice' }">BoxOfficeByDay</h1>
-    <h1 v-bind:class="{ dNone: this.$route.path == '/BoxOffice' }">BoxOfficeByWeek</h1>
+    <h1>{{ title }}</h1>
     <div>
       <input type="date" v-model="selectedDate" @change="search" v-bind:class="{ dNone: this.$route.path == '/weekBoxOffice' }" />
       <input type="date" v-model="selectedDate2" @change="search" v-bind:class="{ dNone: this.$route.path == '/BoxOffice' }" />
@@ -43,6 +42,7 @@ export default {
       list: [],
       routePath: '',
       targetDt: '',
+      title: '',
     };
   },
   setup() {},
@@ -56,9 +56,21 @@ export default {
   mounted() {},
   unmounted() {},
   beforeUpdate() {
-    console.log('beforeUpdate');
+    if (this.$route.path == '/BoxOffice') {
+      this.title = 'BoxOfficeByDay';
+    } else if (this.$route.path == '/weekBoxOffice') {
+      this.title = 'BoxOfficeByWeek';
+    }
   },
   updated() {},
+  watch: {
+    title: {
+      handler() {
+        this.search();
+      },
+    },
+    // ㅠㅠ watch 써서 해결
+  },
   methods: {
     search() {
       if (this.$route.path == '/BoxOffice') {
