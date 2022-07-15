@@ -21,7 +21,7 @@
         <tr v-for="item in list" :key="item.movieCd">
           <td>{{ item.rank }}</td>
           <td>
-            <router-link :to="`/DetailsView/${item.rnum}`">{{ item.movieNm }}</router-link>
+            <router-link :to="`/DetailsView/${item.movieCd}`">{{ item.movieNm }}</router-link>
           </td>
           <td>{{ item.openDt }}</td>
           <td>{{ numberComma(item.audiAcc) }}</td>
