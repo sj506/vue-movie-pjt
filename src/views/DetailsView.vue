@@ -1,7 +1,5 @@
 <template>
-  <div>
-    {{ name }}
-  </div>
+  <div></div>
 </template>
 <script>
 export default {
@@ -9,7 +7,6 @@ export default {
   props: {
     name: {
       type: String,
-      default: '1',
     },
   },
   components: {},
@@ -20,11 +17,16 @@ export default {
   },
   setup() {},
   created() {
-    const val = this.$route.params;
-    console.log(val);
+    this.getData();
   },
   mounted() {},
   unmounted() {},
-  methods: {},
+  methods: {
+    async getData() {
+      const data = await this.getDetailsboxOfficeByDay(this.$route.params.id);
+      console.log(data.movieInfoResult.movieInfo);
+      this.list = data.movieInfoResult.movieInfo;
+    },
+  },
 };
 </script>

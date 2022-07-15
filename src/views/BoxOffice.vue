@@ -42,6 +42,7 @@ export default {
       selectedDate2: '',
       list: [],
       routePath: '',
+      targetDt: '',
     };
   },
   setup() {},
@@ -54,26 +55,19 @@ export default {
   },
   mounted() {},
   unmounted() {},
-<<<<<<< HEAD
-  updated() {},
-=======
-  updated() {
-    if (this.$route.path == '/BoxOffice') {
-      this.selectedDate = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().slice(0, 10);
-    } else if (this.$route.path == '/weekBoxOffice') {
-      this.selectedDate = new Date(new Date().setDate(new Date().getDate() - 8)).toISOString().slice(0, 10);
-    }
+  beforeUpdate() {
+    console.log('beforeUpdate');
   },
->>>>>>> 65ee597965d8b5d8bf626cfac0b28b7fa46f6960
+  updated() {},
   methods: {
     search() {
       if (this.$route.path == '/BoxOffice') {
-        const targetDt = this.selectedDate.replaceAll('-', '');
-        this.getData(targetDt);
+        this.targetDt = this.selectedDate.replaceAll('-', '');
       } else if (this.$route.path == '/weekBoxOffice') {
-        const targetDt = this.selectedDate2.replaceAll('-', '');
-        this.getData(targetDt);
+        this.targetDt = this.selectedDate2.replaceAll('-', '');
       }
+      this.getData(this.targetDt);
+      console.log('search');
     },
     async getData(targetDt) {
       if (this.$route.path == '/BoxOffice') {
@@ -83,6 +77,7 @@ export default {
         const data = await this.getWeekboxOfficeByDay(targetDt, 0);
         this.list = data.boxOfficeResult.weeklyBoxOfficeList;
       }
+      console.log('getData');
     },
   },
 };

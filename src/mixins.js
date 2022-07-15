@@ -3,10 +3,11 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      key: '0beecfdd3a0eba0dbb97b9a5772fbf18',
+      key: '59dcc34d141da4367d1b52ab55ebc3e6',
       baseUrl: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/',
       boxOfficeByDay: 'boxoffice/searchDailyBoxOfficeList.json',
       weekboxOfficeByDay: 'boxoffice/searchWeeklyBoxOfficeList.json',
+      detailsBoxOffice: 'movie/searchMovieInfo.json',
     };
   },
   methods: {
@@ -41,6 +42,16 @@ export default {
       const url = this.baseUrl + this.weekboxOfficeByDay;
       return await this.$api(url, parameter);
     },
+
+    async getDetailsboxOfficeByDay(movieCd) {
+      const parameter = {
+        key: this.key,
+        movieCd,
+      };
+      const url = this.baseUrl + this.detailsBoxOffice;
+      return await this.$api(url, parameter);
+    },
+
     numberComma(num) {
       return String(num).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
