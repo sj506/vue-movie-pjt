@@ -3,7 +3,8 @@
     <h1 v-bind:class="{ dNone: this.$route.path == '/weekBoxOffice' }">BoxOfficeByDay</h1>
     <h1 v-bind:class="{ dNone: this.$route.path == '/BoxOffice' }">BoxOfficeByWeek</h1>
     <div>
-      <input type="date" v-model="selectedDate" @change="search" />
+      <input type="date" v-model="selectedDate" @change="search" v-bind:class="{ dNone: this.$route.path == '/weekBoxOffice' }" />
+      <input type="date" v-model="selectedDate2" @change="search" v-bind:class="{ dNone: this.$route.path == '/BoxOffice' }" />
     </div>
     <h1 v-bind:class="{ dNone: list != '' }">Loding...</h1>
     <table v-bind:class="{ dNone: list == '' }">
@@ -38,6 +39,7 @@ export default {
   data() {
     return {
       selectedDate: '',
+      selectedDate2: '',
       list: [],
       routePath: '',
     };
@@ -47,14 +49,21 @@ export default {
     const d = new Date();
     d.setDate(d.getDate() - 1);
     this.selectedDate = d.toISOString().slice(0, 10);
+    this.selectedDate2 = new Date(new Date().setDate(new Date().getDate() - 8)).toISOString().slice(0, 10);
     this.search();
   },
   mounted() {},
   unmounted() {},
+  updated() {},
   methods: {
     search() {
-      const targetDt = this.selectedDate.replaceAll('-', '');
-      this.getData(targetDt);
+      if (this.$route.path == '/BoxOffice') {
+        const targetDt = this.selectedDate.replaceAll('-', '');
+        this.getData(targetDt);
+      } else if (this.$route.path == '/weekBoxOffice') {
+        const targetDt = this.selectedDate2.replaceAll('-', '');
+        this.getData(targetDt);
+      }
     },
     async getData(targetDt) {
       if (this.$route.path == '/BoxOffice') {
