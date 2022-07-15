@@ -54,7 +54,17 @@ export default {
   },
   mounted() {},
   unmounted() {},
+<<<<<<< HEAD
   updated() {},
+=======
+  updated() {
+    if (this.$route.path == '/BoxOffice') {
+      this.selectedDate = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().slice(0, 10);
+    } else if (this.$route.path == '/weekBoxOffice') {
+      this.selectedDate = new Date(new Date().setDate(new Date().getDate() - 8)).toISOString().slice(0, 10);
+    }
+  },
+>>>>>>> 65ee597965d8b5d8bf626cfac0b28b7fa46f6960
   methods: {
     search() {
       if (this.$route.path == '/BoxOffice') {
